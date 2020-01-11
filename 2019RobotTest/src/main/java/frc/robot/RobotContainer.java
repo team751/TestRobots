@@ -9,10 +9,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.core751.commands.Drivetrain.ArcadeDrive;
 import frc.robot.core751.subsystems.DifferentialDriveTrain;
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -23,11 +21,8 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
-  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftPorts, Constants.rightPorts, Constants.driveMotorType)
+  private final DifferentialDriveTrain differentialDriveTrain = new DifferentialDriveTrain(Constants.leftPorts, Constants.rightPorts, Constants.driveMotorType);
 
   private final ArcadeDrive arcadeDrive = new ArcadeDrive(Constants.driveStickPort, differentialDriveTrain);
 
@@ -46,6 +41,7 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    differentialDriveTrain.setDefaultCommand(arcadeDrive);
   }
 
 
@@ -56,6 +52,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return null;
   }
 }
